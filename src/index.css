@@ -1,0 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+input::placeholder{
+  color: gray;
+}
+.App{
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* .App .MuiSvgIcon-root{
+  font-size: 30px;
+  z-index: -1000px;
+} */
+.MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium .css-1696fkf-MuiSvgIcon-root{
+  font-size: 24px !important;
+}
