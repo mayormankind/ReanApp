@@ -1,16 +1,26 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDpa3RDkJV3CPwGUXwD7s4wYAV1ddtVvU0",
-  authDomain: "lightgram-mod.firebaseapp.com",
-  projectId: "lightgram-mod",
-  storageBucket: "lightgram-mod.appspot.com",
-  messagingSenderId: "255138188045",
-  appId: "1:255138188045:web:e7e90c99b73724a1233e44"
+  apiKey: "AIzaSyBdXNuPISNgcUkbYwvM_GrXIJfRLXbwXqk",
+  authDomain: "rean-9afba.firebaseapp.com",
+  projectId: "rean-9afba",
+  storageBucket: "rean-9afba.appspot.com",
+  messagingSenderId: "28441661464",
+  appId: "1:28441661464:web:d4ba317c338046ef66736d",
+  measurementId: "G-2YJLD07MXW"
 };
+
+// Initialize Firebase
+const analytics = getAnalytics(app);
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const store = getStorage(app);
