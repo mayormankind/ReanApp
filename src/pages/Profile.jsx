@@ -25,7 +25,7 @@ export default function Profile() {
             </Flex>
             <IconButton icon={<SettingsIcon/>} variant='ghost' fontSize='24px'/>
           </Flex>
-          <Button leftIcon={<LocationCity/>} variant='solid'>Block 12,Simsons Road, California, Usa.</Button>
+          <Button leftIcon={<LocationCity />} variant='solid'>Block 12,Simsons Road, California, Usa.</Button>
           <Flex mb='40px' p='0 20px'>
             <Button as='a' leftIcon={<PhoneIcon/>} bg='white' borderRadius='30px' href='tel:+2347040829383' color='textGreen' p='5px 10px'>+2347040829383</Button>
             <Button leftIcon={<CopyIcon/>} variant='solid' onClick={handleCopy}>Copy</Button>
