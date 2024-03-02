@@ -12,8 +12,7 @@ export const theme = extendTheme({
     components: {
         Input : {
             baseStyle: {
-                height: '50px',
-                bg: 'white',
+                backgroundColor: 'white',
                 _focus: {
                     borderWidth: '2px',
                     borderColor: 'greentext',
@@ -22,10 +21,19 @@ export const theme = extendTheme({
                     borderWidth: '2px',
                     borderColor: 'greentext',
                 }
+            },
+            variants:{
+                'customFilled': {
+                    bg: 'white',
+                    size:'sm',
+                    borderRadius:'30px',
+                    color:'black',
+                },
             }
         },
         Button: {
             baseStyle:{
+                cursor: 'pointer',
                 _focus: {
                     opacity: '0.7',
                 },
@@ -60,7 +68,7 @@ export const theme = extendTheme({
         yellowFade: '#f2ec80',
         darkbg: '#323232',
         greentext: '#128080',
-        containerbg: '#a1e7c033',
+        containerbg: '#c1efd6',
         buttonbg: '#113f3f',
         transbg: 'rgba(0,0,0,0.6)',
         darkgray: '#121212',

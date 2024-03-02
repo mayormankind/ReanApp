@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { PageWrapper } from '../chakra/Styles'
 import { Avatar, Flex, IconButton, Text, Button } from '@chakra-ui/react';
 import { FaUser } from 'react-icons/fa';
 import { CopyIcon, PhoneIcon, SettingsIcon } from '@chakra-ui/icons';
 import { toast } from 'react-toastify';
 import { LocationCity } from '@mui/icons-material';
+import { UserContext } from '../api/UserContext';
 
 export default function Profile() {
   const [role, setRole ] = useState('Company');
-
+  const { user } = useContext(UserContext)
   const handleCopy= () =>{
     toast.success('Phone Number copied successfully!')
   }
@@ -19,8 +20,8 @@ export default function Profile() {
             <Flex align='center' gap='10px'>
               <Avatar src='' boxSize='50px'/>
               <Flex flexDir='column'>
-                <Text fontSize='lg'>Hi, Makinde Mayowa</Text>
-                <Text>Role: {role}</Text>
+                <Text fontSize='lg'>Hi, {user.displayName}</Text>
+                <Text textTransform='capitalize'>Role: {role}</Text>
               </Flex>
             </Flex>
             <IconButton icon={<SettingsIcon/>} variant='ghost' fontSize='24px'/>

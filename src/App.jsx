@@ -25,13 +25,13 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            {/* <Route index element={<Routing><Home/></Routing>}/> */}
-            <Route index element={<Home/>}/>
+            <Route index element={<Routing><Home/></Routing>}/>
+            {/* <Route index element={<Home/>}/> */}
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<SignUp/>}/>
-            <Route path='/chat' element={<Chat/>}/>
+            {/* <Route path='/chat' element={<Chat/>}/> */}
             <Route path='/search' element={<TransportSearch/>}/>
-            {/* <Route path='/chats' element={<Routing><Chat/></Routing>}/> */}
+            <Route path='/chats' element={<Routing><Chat/></Routing>}/>
             <Route path='/profile' element={<Profile/>}/>
             {/* <Route path='/profile/:id' element={<Profile/>}/> */}
             <Route path='/passwordReset' element={<PasswordReset/>}/>

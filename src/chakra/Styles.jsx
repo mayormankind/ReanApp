@@ -5,7 +5,7 @@ import { FaSun } from 'react-icons/fa';
   
 export function Logbox({children}) {
   return (
-    <Flex w='100%' bg='#323232' h='100vh'>
+    <Flex w='100%' bg='white' h='100vh' borderRadius='20px'>
       <Flex maxW={'800px'} w='100%' h='95%' m='auto'>
             {children}
       </Flex>
