@@ -31,8 +31,8 @@ function App() {
             <Route path='/signup' element={<SignUp/>}/>
             {/* <Route path='/chat' element={<Chat/>}/> */}
             <Route path='/search' element={<TransportSearch/>}/>
-            <Route path='/chats' element={<Routing><Chat/></Routing>}/>
-            <Route path='/profile' element={<Profile/>}/>
+            <Route path='/chat' element={<Routing><Chat/></Routing>}/>
+            <Route path='/profile' element={<Routing><Profile/></Routing>}/>
             {/* <Route path='/profile/:id' element={<Profile/>}/> */}
             <Route path='/passwordReset' element={<PasswordReset/>}/>
             <Route path='/settings' element={<Settings/>}/>

@@ -40,7 +40,8 @@ function Login() {
         })
         .catch((error) => {
           const errorCode = error.code;
-          toast.error('Could not sign user in.');
+          console.log(errorCode)
+          toast.error('Login credentials incorrect!');
         });
     }
   };

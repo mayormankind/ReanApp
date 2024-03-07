@@ -29,6 +29,14 @@ export const theme = extendTheme({
                     borderRadius:'30px',
                     color:'black',
                 },
+                'error': {
+                    bg: 'white',
+                    size:'sm',
+                    borderRadius:'30px',
+                    color:'black',
+                    borderColor:'red',
+                    borderWidth:'2px',
+                },
             }
         },
         Button: {

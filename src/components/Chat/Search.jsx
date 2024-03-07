@@ -16,6 +16,7 @@ export default function Search({setSearch}) {
   const [ viewImage, setViewImage ] = useState(false);
   const [ image, setImage ] = useState('');
   const userRef = collection(db,'users');
+  const [ active, setActive ] = useState('Trucker');
 
   useEffect(()=>{
     onSnapshot(userRef,(snapshot)=>{
@@ -44,6 +45,10 @@ export default function Search({setSearch}) {
         </Flex>
         <Box h='80%' w='100%' overflowY={'scroll'}>
           <Flex flexDir='column' gap='5px' w='100%'>
+            <Flex w='100%' h='100%'>
+              <Button borderBottom={ active==='Trucker' && '5px solid green' } variant={'ghost'} w='100%' onClick={()=>setActive('Trucker')}>Trucker</Button>
+              <Button w='100%' borderBottom={ active!='Trucker' && '5px solid green' } variant={'ghost'} onClick={()=>setActive('Manufacturer')}>Manufacturer</Button>
+            </Flex>
             {users && searchQuery(users).length == 0 ?
             (<Flex w='100%' h='100%'>
               <Text fontWeight='semibold' m='auto' textAlign='center'>No results available for your search!!</Text>

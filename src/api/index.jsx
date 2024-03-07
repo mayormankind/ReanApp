@@ -1,32 +1,27 @@
-import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
-import { collection, addDoc,  onSnapshot, query, where, doc, setDoc, deleteDoc, orderBy, updateDoc, serverTimestamp } from 'firebase/firestore';
-import {auth,provider,db, store} from "./firebase";
+import { updateProfile } from "firebase/auth";
+import { collection, addDoc,  onSnapshot, query, where, doc, setDoc, deleteDoc, orderBy, updateDoc } from 'firebase/firestore';
+import { db, store, auth } from "./firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { toast } from "react-toastify";
-import { useContext } from "react";
-import { Context } from "./Context";
-// import { v4 } from "uuid";
+import { signOut } from "firebase/auth";
+import { v4 as uuid } from "uuid";
+
 
 export const userRef = collection(db,'users');
-export const postRef = collection(db,'posts');
-export const storyRef = collection(db,'stories');
-export const bookRef = collection(db,'books');
-export const audioRef = collection(db,'audios');
-export const episodeRef = collection(db,'episodes');
 export const commentRef = collection(db,'comments');
 export const notificationRef = collection(db,'notifications');
 export const likeRef = collection(db,'likes');
 
-export const SignIn = (email,password) => {
-    let response= signInWithEmailAndPassword(auth, email,password)
-    return response;
-  };
-  
-export const SignUpWithEmail = (email, password) =>{
-    let response = createUserWithEmailAndPassword(auth, email, password)
-    return response;
-  }
-  
+export const SignOut = () => {
+  signOut(auth)
+    .then(() => {
+      toast.success(`user is successfully logged out`);
+    })
+    .catch((error) => {
+      alert(error);
+    });
+};
+
 export const SaveUserData = (props) =>{
   addDoc(userRef, props)
   .then(()=>{})
@@ -58,51 +53,6 @@ export const getActiveUser = (cuser,setUser) =>{
       setUser(user);
     });
   }
-
-  export const getData = (ref,setData,setLoading) =>{
-    onSnapshot(ref,(snapshot)=>{
-      setData(
-        snapshot.docs.map((docs) =>{
-          return { ...docs.data(), id: docs.id };
-        })
-      );
-      setLoading(true)
-      });
-  }
-  
-  export const uploadPost = (onCancel,post,notifData) =>{
-    addDoc(postRef, post)
-        .then(()=>{
-            toast.success('your post has been added successfully');
-            onCancel();
-            sendNotification(notifData)
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
-  }
-
-  export const updatePost = (id,postBody,image,video) =>{
-    let toUpdate = doc(postRef,id);
-    updateDoc(toUpdate,{postBody,image,video})
-    .then(()=>{
-      toast.success('your post has been updated successfully');
-    })
-    .catch((err)=>{
-      toast.error("couldn't make changes to this post");
-    })
-  }
-  
-  export const deletePost = (id) =>{
-    let toDelete = doc(postRef,id);
-    deleteDoc(toDelete)
-    .then(()=>{
-      toast.success('your post has been deleted successfully');
-    })
-    .catch((err)=>{
-      toast.error("couldn't make changes to this post");
-    })
-  }
   
   export const postImageUpload = (file,setStatus,setProgress) =>{
     const imagesRef = ref(store,`postImages/${file.name}`);
@@ -111,32 +61,13 @@ export const getActiveUser = (cuser,setUser) =>{
       const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       setProgress(progress);
     },
-    (err) => {
-      console.log(err);
-    },
+    (err) => {},
     ()=>{
       getDownloadURL(uploadTask.snapshot.ref).then((res)=>{
         setStatus(res);
       });
     })
   }
-  
-export const filesUpload = (file,setStatus,setProgress) =>{
-  const filesRef = ref(store,`files/${file.name}`);
-  const uploadTask = uploadBytesResumable(filesRef,file)
-  uploadTask.on("state_changed", (snapshot) =>{
-    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-      setProgress(progress);
-    },
-    (err) => {
-      console.log(err);
-    },
-    ()=>{
-      getDownloadURL(uploadTask.snapshot.ref).then((res)=>{
-        setStatus(res);
-      });
-    })
-}
 
 export const postLike = (userId,postId,heart) =>{
   const postLiked = doc(likeRef, `${userId}_${postId}`)
@@ -176,26 +107,6 @@ export const fetchComment = (postId,setComments) =>{
   })
 }
 
-export const AddNewStoryEpisode = (episodeData) =>{
-  addDoc(episodeRef, episodeData)
-  .then(()=>{
-      toast.success('a new episode has been added successfully');
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
-}
-
-export const fetchEpisodes = (storyId,setEpisodes) =>{
-  let data = query(episodeRef, where("storyId", "==", storyId)) 
-  onSnapshot(data,(res)=>{
-    const episodes = res.docs.map((doc)=>{
-      return{id:doc.id, ...doc.data()};
-    });
-    setEpisodes(episodes);
-  })
-}
-
 export const sendNotification = (data) =>{
   addDoc(notificationRef, data)
   .then(()=>{})
@@ -221,17 +132,6 @@ export const fetchProfile = (id,setProfileInfo) =>{
       res.docs.map(doc=>{
         return { ...doc.data(), id: doc.id}
       })[0]
-    )
-  })
-}
-
-export const fetchProfilePost = (email,setPosts) =>{
-  let postQuery = query(postRef, where("userMail" == email));
-  onSnapshot(postQuery, (res)=>{
-    setPosts(
-      res.docs.map(doc=>{
-        return { ...doc.data(), id: doc.id}
-      })
     )
   })
 }
