@@ -9,8 +9,6 @@ export default function Message({message,owner}) {
   const [ view, setViewImage ] = useState(false);
   const [ image, setImage ] = useState(false);
   const { user } = useContext(Context);
-  const { colorMode } = useColorMode();
-  const isDark = colorMode == 'dark';
   const refr = useRef();
 
   useEffect(()=>{
@@ -35,12 +33,9 @@ export default function Message({message,owner}) {
   // } 
   return (
     <Flex flexDir={owner==='sender'&&'row-reverse'} ref={refr} gridGap='10px'>
-      <Flex flexDir='column' >
-        <Avatar src={message.senderId === user.uid ? user.photoURL : data.user.photoURL} alt={data.displayName} boxSize={{sm:'30px',base:'25px'}}/>
-      </Flex>
-      <Flex flexDir='column' gap='5px' w='100%' maxW='80%' alignItems={owner=='sender' ? 'flex-end' : 'flex-start'} >
+      <Flex flexDir='column' gap='5px' w='80%' alignItems={owner=='sender' ? 'flex-end' : 'flex-start'} >
         <Text as='span' mb='-10px'>{message.time}</Text>
-        <Text as='p' borderRadius={owner=='sender' ? '10px 0 10px 10px' : '0 10px 10px 10px'} w='fit-content' bg={owner === 'receiver' ? isDark? 'lightgr' : 'darkgray' : 'greentext' } p='5px 10px' fontSize='small'>{message.message}</Text>
+        <Text as='p' borderRadius={owner=='sender' ? '10px 0 10px 10px' : '0 10px 10px 10px'} w='fit-content' bg={owner === 'receiver' ? 'lightgr' : 'greentext'} p='5px 10px' fontSize='small'>{message.message}</Text>
         {message.mfile && <Image src={message.mfile} onClick={()=>view_Image(message.mfile)} alt={'image'} w={{sm:'50%',base:'80%'}} h='100%'/>
         }
       </Flex>

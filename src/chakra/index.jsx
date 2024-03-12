@@ -41,6 +41,7 @@ export const theme = extendTheme({
         },
         Button: {
             baseStyle:{
+                // width: '100%',
                 cursor: 'pointer',
                 _focus: {
                     opacity: '0.7',

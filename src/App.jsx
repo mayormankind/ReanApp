@@ -10,6 +10,7 @@ import PasswordReset from './pages/PasswordReset';
 import Settings from './pages/Settings';
 import { Context } from './api/Context';
 import TransportSearch from './pages/TransportSearch';
+import News from './pages/News';
 
 function App() {
   const {user} = useContext(Context);
@@ -26,16 +27,15 @@ function App() {
         <Router>
           <Routes>
             <Route index element={<Routing><Home/></Routing>}/>
-            {/* <Route index element={<Home/>}/> */}
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<SignUp/>}/>
-            {/* <Route path='/chat' element={<Chat/>}/> */}
-            <Route path='/search' element={<TransportSearch/>}/>
+            <Route path='/search' element={<Routing><TransportSearch/></Routing>}/>
             <Route path='/chat' element={<Routing><Chat/></Routing>}/>
+            <Route path='/news' element={<Routing><News/></Routing>}/>
             <Route path='/profile' element={<Routing><Profile/></Routing>}/>
             {/* <Route path='/profile/:id' element={<Profile/>}/> */}
             <Route path='/passwordReset' element={<PasswordReset/>}/>
-            <Route path='/settings' element={<Settings/>}/>
+            <Route path='/settings' element={<Routing><Settings/></Routing>}/>
           </Routes>
         </Router>
       </div>

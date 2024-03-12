@@ -40,7 +40,7 @@ export default function Profile() {
               <IconButton icon={<SettingsIcon/>} variant='ghost' fontSize='24px'/>
             </Link>
           </Flex>
-          <Flex p='0 20px'>
+          {/* <Flex p='0 20px'>
             <Button as='a' leftIcon={<Mail/>} bg='white' borderRadius='30px' href={`mailto:${activeUser?.email}`} color='textGreen' p='5px 10px'>{activeUser?.email}</Button>
           </Flex>
           <Flex p='0 20px'>
@@ -49,7 +49,7 @@ export default function Profile() {
           <Flex mb='40px' p='0 20px'>
             <Button as='a' leftIcon={<PhoneIcon/>} bg='white' borderRadius='30px' href={`tel:${activeUser?.poc}`} color='textGreen' p='5px 10px'>{activeUser?.poc}</Button>
             <IconButton icon={<CopyIcon/>} variant='ghost' onClick={handleCopy}/>
-          </Flex>
+          </Flex> */}
           <Flex flexDir='column' bg='white' borderTopRadius={'50px'} p='20px' gap='10px'>
             <Text>Rean is driven toward saving mother nature. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus voluptatem ea autem unde ipsa saepe aliquid quod nulla, magnam odit doloribus molestiae. Ut qui sit recusandae, eligendi earum iusto vero error dolore ratione provident natus eius reprehenderit non quidem maiores consectetur laborum exercitationem ipsa quae aliquam at doloribus. Quis quia non at praesentium sunt nisi culpa nobis aliquam? Rerum vitae veritatis repellendus unde ratione quis ea magnam placeat exercitationem itaque impedit eligendi minima voluptatem id reiciendis eveniet, temporibus repellat consequatur debitis dignissimos quaerat inventore ipsa.</Text>
             <Flex flexDir='column' gap='5px'>

@@ -41,6 +41,13 @@ export const About = ({ setModalDisplay }) =>{
   )
 }
 
+export function TruncateText({ text, maxLength, color }){
+  const truncated = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  return(
+    <Text fontSize='small' color={color}>{truncated}</Text>
+  )
+}
+
 export const Policy = ({ setModalDisplay }) =>{
   return(
     <Flex w='100%' bg={'rgba(0,0,0,0.6'} pos='fixed' top='0' bottom='0' left='0' right='0'>
@@ -81,6 +88,18 @@ export const Loading = () =>{
     <Flex m='auto' align='center' flexDir='column'>
       <Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='textGreen' size='xl'/>
       <Text>Please wait...</Text>
+    </Flex>
+  )
+}
+
+export const UserPageButton = ({ icon, label, detail }) =>{
+  return(
+    <Flex flexDir='column' w='100%' p='10px 20px'>
+      <Flex align='center' gap='20px' color='greenBg'>
+        {icon}
+        <Text>{label}</Text>
+      </Flex>
+      <Text fontSize='sm' color='gray'>{detail}</Text>
     </Flex>
   )
 }

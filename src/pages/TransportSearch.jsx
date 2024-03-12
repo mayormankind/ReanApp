@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { PageWrapper } from '../chakra/Styles'
 import { Flex, IconButton, Text } from '@chakra-ui/react'
-import { EmojiTransportationOutlined } from '@mui/icons-material'
+import { UserContext } from '../api/UserContext';
+import Manufacturer from './Manufacturer';
+import Trucker from './Trucker';
 
 export default function TransportSearch() {
+
+  const {activeUser} = useContext(UserContext);
+
   return (
     <PageWrapper activeLink={'Transport'}>
-        <Flex m='auto' flexDir='column'>
-            <IconButton icon={<EmojiTransportationOutlined style={{fontSize:'30px'}}/>} color='textGreen' variant='ghost'/>
-            <Text color={'gray'}>Search</Text>
-        </Flex>
+      {activeUser?.role === 'manufacturer' ? <Manufacturer/> : <Trucker/>}
     </PageWrapper>
   )
 }

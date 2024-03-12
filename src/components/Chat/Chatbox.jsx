@@ -9,13 +9,11 @@ import AttachmentBox from './AttachmentBox';
 
 export default function Chatbox({setBack}) {
   const { data } = useContext(ChatContext);
-  const {colorMode} =useColorMode();
-  const isDark = colorMode == 'dark';
   const [ attach, setAttach ] = useState(false);
   const [ asset, setAsset ] = useState('');
   return (
       <Box h='100%' w='100%' flexDir='column'>
-        <Flex bg={isDark?'black':'white'} align='center' justify='space-between' w='100%' p='10px' h='10%'>
+        <Flex bg={'white'} align='center' justify='space-between' w='100%' p='10px' h='10%'>
             <IconButton display={{sm:'none',base:'flex'}}  variant='ghost' icon={<FaArrowLeft/>} onClick={()=>setBack(false)}/>
           <Avatar src={data.user?.photoURL} boxSize='40px' mr='10px'/>
           <Box w='100%'>

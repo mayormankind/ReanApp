@@ -1,4 +1,4 @@
-import { Flex, Box,Text, IconButton, useColorMode, Input, Button, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
+import { Flex, Box,Text, Textarea, IconButton, useColorMode, Input, Button, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import React, { useContext, useState } from 'react';
 import { RiAttachmentLine, RiSendPlaneFill, RiTimerLine } from 'react-icons/ri';
@@ -71,17 +71,12 @@ export default function MessageBox({attach,setAttach,asset,setAsset}) {
 
   {asset && console.log(asset.type,fileType)}
   return (
-    <Flex p='10px' h='10%' w='100%' bg={isDark ? 'black' : 'white'} boxShadow={'lg'}>
-      <Flex align='center' w='100%' h='100%'>
+    <Flex p='10px' h='10%' w='100%' bg={'lightgray'}>
+      <Flex align='center' w='100%' h='100%' borderRadius={'20px'}>
         <input type='file' id='file' style={{display:'none'}} onChange={(e)=>setAsset(e.target.files[0])}/>
-        <InputGroup size='lg' bg={isDark ? '#4d4d4d':'lightgray'} borderRadius='20px'>
-          <InputLeftElement color='greentext' cursor='pointer' fontSize='20px' htmlFor='file' title='attachments' onClick={(e)=>setAttach(true)}><RiAttachmentLine/></InputLeftElement>
-          <Input type='text' variant='solid' placeholder='Message Here...' fontSize='small' w='100%' borderRadius='20px' bg={isDark ? '#4d4d4d':'lightgray'} onChange={(e)=>setMessage(e.target.value)} value={message}/>
-          <InputRightElement w='fit-content'>
-            <Button variant='customSolid' borderRadius='20px' rightIcon={<RiSendPlaneFill/>} isDisabled={!message ? true : false} onClick={sendMessage}>Send</Button>
-          </InputRightElement>
-        </InputGroup>
-        
+        <IconButton variant='ghost' color='greentext' icon={<RiAttachmentLine/>} cursor='pointer' fontSize='20px' htmlFor='file' title='attachments' onClick={(e)=>setAttach(true)}/>
+        <Textarea variant='solid' placeholder='Message Here...' fontSize='small' w='100%' h='100%' rows='3' borderRadius='20px' bg={'white'} resize={'none'} onChange={(e)=>setMessage(e.target.value)} value={message}/>
+        <IconButton variant='ghost' fontSize={'30px'} color='greentext' icon={<RiSendPlaneFill/>} isDisabled={!message ? true : false} onClick={sendMessage}/>        
       </Flex>
     </Flex>
   )

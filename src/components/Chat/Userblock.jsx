@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from 'firebase/firestore';
 import { db } from '../../api/firebase';
 import { Context } from '../../api/Context';
+import { TruncateText } from '../../chakra/Styles';
 
 
 export default function UserBlock(props){
@@ -62,8 +63,9 @@ export default function UserBlock(props){
         <Flex align='center' justify='space-between' p='5px 20px' gap='30px' borderBottom='1px solid gray'>
             <Avatar src={props.image} boxSize={{sm:'70px',base:'40px'}} onClick={()=>view_Image(props.image)}/>
             <Box color='black' w='100%' onClick={()=>findUser(props.displayName)} cursor='pointer' _focus={{opacity:'0.7'}} _active={{opacity:'0.8'}}>
-                <Text fontWeight='semibold'>{props.displayName}</Text>
-                <Text>{props.email}</Text>
+                <Text fontWeight='semibold' color='textGreen'>{props.displayName}</Text>
+                <TruncateText text={props.email} maxLength={'40'} color='gray'/>
+                <Text color='gray'>Role: {props.role}</Text>
             </Box>
         </Flex>
     )

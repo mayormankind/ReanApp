@@ -17,18 +17,6 @@ const UserProvider = ({children}) =>{
       unsub()
     }
   },[])
-  
-  // useMemo(()=>{
-  //   onAuthStateChanged(auth,(res)=>{
-  //     onSnapshot(userRef, (response)=>{
-  //       setActiveUser(response.docs.map((docs)=>{
-  //           return { ...docs.data() }
-  //         }).filter((item)=>{
-  //           return (item.uid) === res.uid
-  //         })[0])
-  //       });
-  //   });
-  // },[])
 
   console.log(activeUser);
 
